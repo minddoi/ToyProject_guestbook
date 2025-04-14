@@ -1,0 +1,80 @@
+/* 방명록 추가하는 모달창 */
+* {
+    font-family: Pretendard, sans-serif;
+}
+
+body {
+    background: #f5f6f7;
+  }
+
+.modal {
+    display: none; /* 처음에는 안 보이게 설정 */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh; /*  화면 전체 비율에 맞춰서 반응형으로! */
+    background-color: rgba(0,0,0,0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content { /* 모달창 부분에서 내용이 있는 부분 배경 */
+    background: white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    width: 30%;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column; /* 내부 입력창 세로로 배치 */
+    gap: 5px;
+}
+
+.modal-content input,
+.modal-content textarea {
+    border: 2px solid rgb(100, 100, 100);
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    background: #fafafa;
+    transition: 0.2s; /* 누르면 테두리 바뀜 */
+    resize: none;
+
+}
+
+/* transition 테두리 색 변경 */
+.modal-content input:focus,
+.modal-content textarea:focus {
+    outline: none;
+    border: 2px solid #ff9216; 
+}
+
+
+#content {
+    height: 50px;
+}
+
+.modal-content .button-container {
+    display: flex; /* 버튼들을 가로로 배치 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    gap: 10px;
+  }
+
+.modal-content button {
+    padding: 10px;
+    font-weight: bold;
+    width: 70px;
+    border-radius: 12px;
+    background-color: #ff9216;
+    cursor: pointer;
+    border: 2px solid rgb(100, 100, 100);
+}
+
+.modal .content-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#main-title {
+    font-weight: bold;
+    font-size: 30px;
+}
