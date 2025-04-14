@@ -36,17 +36,32 @@ submitBtn.addEventListener('click', () => {
   // 방명록 항목 생성
   const newGuestBook = document.createElement('div');
   newGuestBook.classList.add('newGuestBook');
+
   newGuestBook.innerHTML = `
     <div class="new-title">${title}</div>
     <div class="new-content">${content}</div>
     <div class="new-name">${name}</div>
     <div class="new-date">${nowClock}</div>
-    <input type="text" id="check-password" placeholder="비밀번호"/>
-    <button id="delete-btn">삭제</button>
+    <input type="text" class="check-password" placeholder="비밀번호"/> 
+    <button class="delete-btn">삭제</button>
   `;
-
+  
   // 클래스 붙여넣기
   guestbookList.appendChild(newGuestBook);
+
+  const checkPasswordInput = newGuestBook.querySelector('.check-password'); //여기서는 새로 생길 때 삭제 버튼이 생기는거니까
+  const deleteBtn = newGuestBook.querySelector('.delete-btn'); //document가 아닌 newGuestBook으로!!!
+  
+  //비밀번호가 맞다면 삭제
+  deleteBtn.addEventListener ('click', () => {
+    const newPassword = checkPasswordInput.value.trim();
+
+     if (newPassword === password) {
+        guestbookList.removeChild(newGuestBook);
+    } else {
+        alert('비밀번호가 다릅니다!');
+    }
+    })
 
   // 입력창 초기화
   nameInput.value = '';
@@ -54,3 +69,8 @@ submitBtn.addEventListener('click', () => {
   contentInput.value = '';
   passwordInput.value = '';
 });
+
+
+
+
+
