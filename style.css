@@ -8,6 +8,16 @@ body {
   }
 
 
+  #open-add-btn {
+    padding: 10px;
+    width: auto;
+    border-radius: 12px;
+    background-color: #ff9216;
+    cursor: pointer;
+    border: 2px solid rgb(100, 100, 100);
+    font-size: 15px;
+}
+ 
 .modal {
     display: none; /* 처음에는 안 보이게 설정 */
     position: fixed;
