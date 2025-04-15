@@ -5,6 +5,7 @@ from django.views.decorators.http import require_http_methods
 from .models import *
 import json
 
+
 @require_http_methods(["POST", "GET"])
 def guest_list(request):
 
@@ -41,7 +42,7 @@ def guest_list(request):
                 "writer" : guest.writer,
                 "content" : guest.content,
                 "password" : guest.password,
-                "created_time": guest.created,
+                "created_time": (guest.created).strftime("%Y-%m-%d %H:%M:%S"),
             }
             guest_json_all.append(guest_json)
 
