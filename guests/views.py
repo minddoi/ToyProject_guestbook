@@ -53,11 +53,10 @@ def guest_list(request):
             'data': guest_json_all
         })
 
-#테스트용 세부 리스트 메소드
 @require_http_methods(["GET", "DELETE"]) 
 def guest_detail(request, id):
 
-    if request.method == "GET" :
+    if request.method == "GET":
         guest = get_object_or_404(Guest, pk=id)
         guest_detail_json = {
             "id" : guest.id,
@@ -71,12 +70,28 @@ def guest_detail(request, id):
             "data" : guest_detail_json
         })
     
-    if request.method == "DELETE" :
-        delete_guest = get_object_or_404(Guest, pk=id)
-        delete_guest.delete()
+    if request.method == "DELETE":
+        try:
+            body = json.loads(request.body.decode('utf-8'))
+            input_password = body.get("password")
 
-        return JsonResponse({
-            'status': 200,
-            'message' : '방명록 삭제 성공',
-            'data' : None
-        })
+            guest = get_object_or_404(Guest, pk=id)
+
+            if guest.password == input_password:
+                guest.delete()
+                return JsonResponse({
+                    'status': 200,
+                    'message': '방명록 삭제 성공',
+                    'data': None
+                })
+            else:
+                return JsonResponse({
+                    'status': 403,
+                    'message': '올바른 비밀번호가 아닙니다.',
+                })
+        
+        except json.JSONDecodeError:
+            return JsonResponse({
+                'status': 400,
+                'message': '요청 형식이 올바르지 않습니다.',
+            })
