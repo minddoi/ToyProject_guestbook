@@ -1,3 +1,5 @@
+import { getData, postGuestbook } from './api.js';
+
 const modal = document.querySelector("#modal");
 const addBtn = document.querySelector("#open-add-btn");
 const closeBtn = document.querySelector("#close-add-btn");
@@ -22,7 +24,8 @@ closeBtn.onclick = function() {
 }
 
 // 방명록 등록하기
-submitBtn.addEventListener('click', () => {
+submitBtn.addEventListener('click', async () => { //비동기 함수로 바꿔줘야함!
+  
   const name = nameInput.value.trim();
   const title = titleInput.value.trim();
   const content = contentInput.value.trim();
@@ -32,6 +35,16 @@ submitBtn.addEventListener('click', () => {
     alert("모든 항목을 입력해주세요!");
     return; 
   }
+
+  //백이 요청한 형식으로 데이터 보내기
+  const postData = {
+    title,
+    writer: name,
+    content,
+    password
+  };
+
+  const requestData = await postGuestbook(postData);
 
   // 방명록 항목 생성
   const newGuestBook = document.createElement('div');
@@ -70,6 +83,7 @@ submitBtn.addEventListener('click', () => {
   passwordInput.value = '';
 });
 
+getData();
 
 
 
