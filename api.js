@@ -21,8 +21,9 @@ export async function postGuestbook(data) {
 export async function getData() {
     try {
         const res = await fetch (`${BASE_URL}/guest/`);
-        const data = await res.json();
-        console.log('데이터:', data);
+        const json = await res.json();
+        return json.data;
+        
     } catch (err){
     console.error('에러 발생:', err);
     } 

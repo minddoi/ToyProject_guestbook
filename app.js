@@ -23,6 +23,29 @@ closeBtn.onclick = function() {
     modal.style.display = "none";
 }
 
+//방명록 리스트 불러오기
+async function renderGuestbookList() {
+    const dataList = await getData();
+
+    guestbookList.innerHTML = ''; //불러오기 전에 기존 내용 초기화
+
+    dataList.forEach(item => {
+        const newGuestBook = document.createElement('div');
+        newGuestBook.classList.add('newGuestBook');
+    
+        newGuestBook.innerHTML = `
+          <div class="new-title">${item.title}</div>
+          <div class="new-content">${item.content}</div>
+          <div class="new-name">${item.writer}</div>
+          <div class="new-date">${item.created_time}</div>
+        `;
+    
+        guestbookList.appendChild(newGuestBook);
+      });
+}
+modal.style.display = "none"; //새로고침시 모달창 뜨지 않게
+renderGuestbookList();
+
 // 방명록 등록하기
 submitBtn.addEventListener('click', async () => { //비동기 함수로 바꿔줘야함!
   
@@ -46,35 +69,35 @@ submitBtn.addEventListener('click', async () => { //비동기 함수로 바꿔�
 
   const requestData = await postGuestbook(postData);
 
-  // 방명록 항목 생성
-  const newGuestBook = document.createElement('div');
-  newGuestBook.classList.add('newGuestBook');
+//   // 방명록 항목 생성
+//   const newGuestBook = document.createElement('div');
+//   newGuestBook.classList.add('newGuestBook');
 
-  newGuestBook.innerHTML = `
-    <div class="new-title">${title}</div>
-    <div class="new-content">${content}</div>
-    <div class="new-name">${name}</div>
-    <div class="new-date">${nowClock}</div>
-    <input type="text" class="check-password" placeholder="비밀번호"/> 
-    <button class="delete-btn">삭제</button>
-  `;
+//   newGuestBook.innerHTML = `
+//     <div class="new-title">${title}</div>
+//     <div class="new-content">${content}</div>
+//     <div class="new-name">${name}</div>
+//     <div class="new-date">${nowClock}</div>
+//     <input type="text" class="check-password" placeholder="비밀번호"/> 
+//     <button class="delete-btn">삭제</button>
+//   `;
   
-  // 클래스 붙여넣기
-  guestbookList.appendChild(newGuestBook);
+//   // 클래스 붙여넣기
+//   guestbookList.appendChild(newGuestBook);
 
-  const checkPasswordInput = newGuestBook.querySelector('.check-password'); //여기서는 새로 생길 때 삭제 버튼이 생기는거니까
-  const deleteBtn = newGuestBook.querySelector('.delete-btn'); //document가 아닌 newGuestBook으로!!!
+//   const checkPasswordInput = newGuestBook.querySelector('.check-password'); //여기서는 새로 생길 때 삭제 버튼이 생기는거니까
+//   const deleteBtn = newGuestBook.querySelector('.delete-btn'); //document가 아닌 newGuestBook으로!!!
   
-  //비밀번호가 맞다면 삭제
-  deleteBtn.addEventListener ('click', () => {
-    const newPassword = checkPasswordInput.value.trim();
+//   //비밀번호가 맞다면 삭제
+//   deleteBtn.addEventListener ('click', () => {
+//     const newPassword = checkPasswordInput.value.trim();
 
-     if (newPassword === password) {
-        guestbookList.removeChild(newGuestBook);
-    } else {
-        alert('비밀번호가 다릅니다!');
-    }
-    })
+//      if (newPassword === password) {
+//         guestbookList.removeChild(newGuestBook);
+//     } else {
+//         alert('비밀번호가 다릅니다!');
+//     }
+//     })
 
   // 입력창 초기화
   nameInput.value = '';
