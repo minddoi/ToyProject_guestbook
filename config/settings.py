@@ -161,5 +161,6 @@ CORS_ALLOW_CREDENTIALS = True
 # 추후 프론트엔드에서 웹 페이지 배포 후 도메인 매핑했다면 해당 도메인 추가 필요
 CORS_ALLOWED_ORIGINS = [ 
     "http://localhost:3000",
+    "http://127.0.0.1:5501",
     "http://127.0.0.1:3000",
 ]
