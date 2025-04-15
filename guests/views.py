@@ -40,7 +40,8 @@ def guest_list(request):
                 "title" : guest.title,
                 "writer" : guest.writer,
                 "content" : guest.content,
-                "password" : guest.password
+                "password" : guest.password,
+                "created_time": guest.created,
             }
             guest_json_all.append(guest_json)
 
