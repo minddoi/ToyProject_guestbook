@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_http_methods
+from django.utils.timezone import localtime
 from .models import *
 import json
 
@@ -42,7 +43,7 @@ def guest_list(request):
                 "writer" : guest.writer,
                 "content" : guest.content,
                 "password" : guest.password,
-                "created_time": (guest.created).strftime("%Y-%m-%d %H:%M:%S"),
+                "created_time": localtime(guest.created).strftime("%Y-%m-%d %H:%M:%S"),
             }
             guest_json_all.append(guest_json)
 
