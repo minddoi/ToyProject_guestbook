@@ -77,7 +77,7 @@ def guest_detail(request, id):
 
             guest = get_object_or_404(Guest, pk=id)
 
-            if guest.password == input_password:
+            if guest.password == int(input_password):
                 guest.delete()
                 return JsonResponse({
                     'status': 200,
