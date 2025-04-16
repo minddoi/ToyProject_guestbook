@@ -90,7 +90,7 @@ def guest_detail(request, id):
                     'message': '올바른 비밀번호가 아닙니다.',
                 })
         
-        except json.JSONDecodeError:
+        except (json.JSONDecodeError, ValueError, TypeError):
             return JsonResponse({
                 'status': 400,
                 'message': '요청 형식이 올바르지 않습니다.',
