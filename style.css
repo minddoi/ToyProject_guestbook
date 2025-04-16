@@ -7,7 +7,7 @@ body {
     background: #f5f6f7;
   }
 
-  #open-add-btn {
+#open-add-btn {
     padding: 10px;
     width: auto;
     border-radius: 12px;
@@ -87,6 +87,16 @@ body {
 #main-title {
     font-weight: bold;
     font-size: 30px;
+}
+
+/* 방명록 배치 그리드 형식으로 */
+#guestbook-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    justify-items: center;
+    padding: 20px;
+
 }
 
 /* 새로 등록한 방명록 */
