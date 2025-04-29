@@ -7,6 +7,18 @@ body {
     background: #f5f6f7;
   }
 
+.main-top-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px;
+
+}
+
+.main-title-info {
+    display: flex;
+    flex-direction: column;
+}
+
 #open-add-btn {
     padding: 10px;
     width: auto;
@@ -18,26 +30,38 @@ body {
 }
  
 .modal {
-    display: none; /* 처음에는 안 보이게 설정 */
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh; /*  화면 전체 비율에 맞춰서 반응형으로! */
-    background-color: rgba(0,0,0,0.15);
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.15);
+
+    visibility: hidden; /* 처음에는 안 보이게 해둠 */
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 999;
 }
 
-.modal-content { /* 모달창 부분에서 내용이 있는 부분 배경 */
+ .modal.active { /* 이걸 온오프해서 보이도록 */
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
     background: white;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    width: 30%;
+    width: 40%;
     padding: 20px;
     border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
     display: flex;
-    flex-direction: column; /* 내부 입력창 세로로 배치 */
+    flex-direction: column;
     gap: 5px;
 }
+
 
 .modal-content input,
 .modal-content textarea {
@@ -46,7 +70,7 @@ body {
     border-radius: 12px;
     font-size: 14px;
     background: #fafafa;
-    transition: 0.2s; /* 누르면 테두리 바뀜 */
+    transition: 0.2s; /* 누르면 테두리 바뀜!! */
     resize: none;
 
 }
@@ -92,7 +116,7 @@ body {
 /* 방명록 배치 그리드 형식으로 */
 #guestbook-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 16px;
     justify-items: center;
     padding: 20px;
@@ -101,36 +125,84 @@ body {
 
 /* 새로 등록한 방명록 */
 .newGuestBook {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: rgb(255, 255, 255);
-    width: 200px; height: auto;
+    width: 220px; height: auto;
     padding: 16px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
+
+.newGuestBook:hover {
+    transform: translateY(-5px); /* 위로 살짝 뜨게 */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* 그림자 진하게 */
+}
+
 .new-title {
     font-weight: bold;
     margin-bottom: 6px;
+    font-size: 18px;
+    margin-bottom: 8px;
 }
 
-/* .newGuestBook-content {
-    line-height: 1.5;
-} */
+.new-content {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.new-name {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.new-date {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 10px;
+    color: gray;
+}
+
+.pw-del-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 10px;
+}
 
 .delete-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 1px 5px;
-    width: 50px; height: 35px;
-    border-radius: 12px;
+    width: 30px; height: 30px;
+    border-radius: 10px;
     background-color: #ff9216;
     cursor: pointer;
     border: 1px solid rgb(100, 100, 100);
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    background-color: #ffb347;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+}
+
+.delete-btn:active {
+    transform: scale(1.0);
 }
 
 .check-password {
     border: 1px solid rgb(100, 100, 100);
-    width: 100px; height: 30px;
+    width: 80px; height: 30px;
     padding: 1px 5px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 14px;
     background: #fafafa;
     transition: 0.2s; /* 누르면 테두리 바뀜 */

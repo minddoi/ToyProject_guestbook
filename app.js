@@ -11,16 +11,19 @@ const passwordInput = document.getElementById('password');
 const submitBtn = document.getElementById('submit');
 const guestbookList = document.getElementById('guestbook-list');
 
-// const now = new Date();
-// const created_time = now.toLocaleString();
-
 // 방명록 모달창 (열기/닫기)
-addBtn.onclick = function() {
-    modal.style.display = "block";
-}
+addBtn.onclick = () => modal.classList.add('active');
+closeBtn.onclick = () => modal.classList.remove('active');
 
-closeBtn.onclick = function() {
-    modal.style.display = "none";
+function formatDateTime(datetimeString) {
+  const date = new Date(datetimeString);
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const hour = date.getHours().toString().padStart(2, '0');
+  const minute = date.getMinutes().toString().padStart(2, '0');
+
+  return `${year}/${month}/${day} ${hour}:${minute}`;
 }
 
 //방명록 리스트 불러오기
@@ -34,12 +37,19 @@ async function renderGuestbookList() {
         newGuestBook.classList.add('newGuestBook');
     
         newGuestBook.innerHTML = `
-          <div class="new-title">${item.title}</div>
-          <div class="new-content">${item.content}</div>
-          <div class="new-name">${item.writer}</div>
-          <div class="new-date">${item.created_time}</div>
-          <input class="check-password" placeholder="비밀번호"></input>
-          <div class="delete-btn">삭제</div>
+          <div class="new-top-container">
+            <div class="new-title">${item.title}</div>
+            <div class="new-content">${item.content}</div>
+          </div>
+          <div class="new-bottom-container">
+            <div class="new-name">${item.writer}🦁</div>
+            <div class="new-date">${formatDateTime(item.created_time)}</div>
+            <div class="pw-del-container">
+              <input class="check-password" placeholder="비밀번호"></input>
+              <div class="delete-btn">삭제</div>
+            </div>
+          </div>
+          
         `;
 
         //삭제 버튼
@@ -61,8 +71,8 @@ async function renderGuestbookList() {
             if (resPw.status === 200) {
                 alert('삭제가 완료되었습니다.');
                 await renderGuestbookList(); //삭제한 화면 렌더링
-            // } else if (resPw.stauts === 400) {
-            //     alert('올바른 숫자를 입력해주세요.') 
+            } else if (resPw.status === 400) {
+                alert('올바른 숫자를 입력해주세요.'); 
             } else {
                 alert(resPw.message);
             }
@@ -72,8 +82,6 @@ async function renderGuestbookList() {
       });
 }
 
-
-modal.style.display = "none"; //새로고침시 모달창 뜨지 않게
 renderGuestbookList();
 
 // 방명록 등록하기

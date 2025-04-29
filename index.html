@@ -8,15 +8,13 @@
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
 </head>
 <body>
-    <div id="main-title">🦁아기사자 방명록🦁</div>
-    <div id="main-info">아가사자님의 방명록에 오신걸 환영합니다!</div>
-
-    <!-- 방명록이 생길 공간 -->
-    <div id="guestbook-list"></div>
-    
-    
-
-    <button id="open-add-btn">방명록 남기기</button>
+    <div class="main-top-container">
+        <div class="main-title-info">
+            <div id="main-title">🦁아기사자 방명록🦁</div>
+            <div id="main-info">아가사자님의 방명록에 오신걸 환영합니다!</div>
+        </div>
+        <button id="open-add-btn">방명록 남기기</button>
+    </div>
     <!-- 방명록 추가하기 누르면 뜨는 미니창(모달창) -->
     <div id="modal" class="modal">
         <div class="modal-content">
@@ -31,6 +29,10 @@
             </div>
         </div>
     </div>
+
+    <!-- 방명록이 생길 공간 -->
+    <div id="guestbook-list"></div>
+    
     <script type="module" src="app.js"></script>
 </body>
 </html>
