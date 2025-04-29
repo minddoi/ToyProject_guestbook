@@ -20,13 +20,24 @@ body {
 }
 
 #open-add-btn {
-    padding: 10px;
-    width: auto;
+    padding: 12px 20px; 
+    border: none; 
     border-radius: 12px;
     background-color: #ff9216;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    border: 2px solid rgb(100, 100, 100);
-    font-size: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    transition: all 0.3s ease; /* 부드럽게 움직이는 효과 */
+}
+
+/* 마우스 올렸을 때 */
+#open-add-btn:hover {
+    background-color: #ffa94d;
+    transform: translateY(-2px); /* 살짝 위로 튀기는 효과 */
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
 }
  
 .modal {
@@ -52,8 +63,8 @@ body {
 
 .modal-content {
     background: white;
-    width: 40%;
-    padding: 20px;
+    width: 20%;
+    padding: 25px;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 
@@ -65,7 +76,7 @@ body {
 
 .modal-content input,
 .modal-content textarea {
-    border: 2px solid rgb(100, 100, 100);
+    border: 2px solid rgb(255, 255, 255);
     padding: 12px 14px;
     border-radius: 12px;
     font-size: 14px;
@@ -99,8 +110,13 @@ body {
     width: 70px;
     border-radius: 12px;
     background-color: #ff9216;
+    color: #ffffff;
     cursor: pointer;
-    border: 2px solid rgb(100, 100, 100);
+    border: none;
+}
+
+#close-add-btn {
+    background-color: rgb(124, 123, 123);
 }
 
 .modal .content-title {
@@ -111,6 +127,7 @@ body {
 #main-title {
     font-weight: bold;
     font-size: 30px;
+    margin-bottom: 6px;
 }
 
 /* 방명록 배치 그리드 형식으로 */
@@ -180,11 +197,12 @@ body {
     justify-content: center;
     align-items: center;
     padding: 1px 5px;
-    width: 30px; height: 30px;
+    width: 40px; height: 30px;
     border-radius: 10px;
     background-color: #ff9216;
+    border: none;
+    color: rgb(255, 255, 255);
     cursor: pointer;
-    border: 1px solid rgb(100, 100, 100);
     font-size: 14px;
 }
 
@@ -199,7 +217,7 @@ body {
 }
 
 .check-password {
-    border: 1px solid rgb(100, 100, 100);
+    border: none;
     width: 80px; height: 30px;
     padding: 1px 5px;
     border-radius: 10px;
